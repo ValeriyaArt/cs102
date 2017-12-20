@@ -7,8 +7,7 @@ from bs4 import BeautifulSoup
 
 bot = telebot.TeleBot(config.token)
 
-
-def get_page(week='', group='K3140'):
+def get_page(week='', group='K3143'):
     if week:
         week = str(week) + '/'
     if week == '0/':
@@ -63,7 +62,7 @@ def get_week(message):
         elif int(week) == 2:
             resp = '<b>Расписание на нечетную неделю:</b>\n\n'
         elif int(week) == 0:
-            resp = '<b>Полное расписание:</b>\n\n'
+            resp = '<b>Все расписание:</b>\n\n'
     week_list = ['/monday', '/tuesday', '/wednesday', '/thursday', '/friday', '/saturday']
     visual_list = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
     for i in range(6):
@@ -110,10 +109,8 @@ def get_tomorrow(message):
     bot.send_message(message.chat.id, resp, parse_mode='HTML')
 
 
-@bot.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday',
-                               'friday', 'saturday', 'sunday',
-                               'Monday', 'Tuesday', 'Wednesday', 'Thursday', 
-                                'Friday', 'Saturday', 'Sunday'])
+@bot.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
+                               'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 def get_day(message):
     day, week, group = message.text.split()
     web_page = get_page(week, group)
@@ -144,7 +141,7 @@ def get_next_lesson(message):
         elif today == 5:
             today = '/saturday'
     else:
-        bot.send_message(message.chat.id, 'Гуляй, студент, сегодня пар нет')
+        bot.send_message(message.chat.id, 'Сегодня выходной, отдохни')
 
     if int(datetime.datetime.today().strftime('%U')) % 2 == 1:
         week = 2
@@ -158,24 +155,22 @@ def get_next_lesson(message):
         _, time = i.split('-')
         t1, t2 = time.split(':')
         time = int(t1 + t2)
-        cur_time = int(str(datetime.datetime.now().hour) +
-                    str(datetime.datetime.now().minute))
+        cur_time = int(str(datetime.datetime.now().hour) + str(datetime.datetime.now().minute))
         if cur_time < time:
             resp = '<b>Не опоздай сегодня на:</b>\n'
-            resp += '<b>{}</b>, {}, {}\n'.format(times_list[cnt],
-                    locations_lst[cnt], lessons_lst[cnt])
+            resp += '<b>{}</b>, {}, {}\n'.format(times_list[cnt], locations_lst[cnt], lessons_lst[cnt])
             bot.send_message(message.chat.id, resp, parse_mode='HTML')
             state = 1
             break
-        cnt += 1
+        cnt +=1
     if not state:
-        bot.send_message(message.chat.id, 'На сегодня все. Всем спасибо, все свободны!')
+        bot.send_message(message.chat.id, 'На сегодня ты закончил, выдохни!')
 
 
-# if __name__ == '__main__':
-# bot.polling(none_stop=True)
+#if __name__ == '__main__':
+#bot.polling(none_stop=True)
 while True:
     try:
-        bot.polling(none_stop=True)
+      bot.polling(none_stop=True)
     except:
         time.sleep(5)
