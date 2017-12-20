@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 bot = telebot.TeleBot(config.token)
 
 
-def get_page(week='', group='K3140'):
+def get_page(week='', group='K3143'):
     if week:
         week = str(week) + '/'
     if week == '0/':
