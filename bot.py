@@ -7,12 +7,14 @@ from bs4 import BeautifulSoup
 
 bot = telebot.TeleBot(config.token)
 
-"
+"""
 
 # Бот будет отвечать только на текстовые сообщения
 @bot.message_handler(content_types=['text'])
 def echo(message):
     bot.send_message(message.chat.id, message.text)
+
+"""
 
 
 def get_page(week='', group='K3143'):
