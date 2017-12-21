@@ -5,10 +5,9 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-access_token = '450449478:AAHP9CqIh1ZEFoFf6pwlZTX-80hM5svrcmI'
-# Создание бота с указанным токеном доступа
-bot = telebot.theTruthIsOutThere_bot (access_token)
+bot = telebot.TeleBot(config.token)
 
+"
 
 # Бот будет отвечать только на текстовые сообщения
 @bot.message_handler(content_types=['text'])
@@ -76,8 +75,7 @@ def get_week(message):
     visual_list = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
     for i in range(6):
         resp += '<b>' + visual_list[i] + '</b>' + ':\n'
-        times_lst, locations_lst, lessons_lst =
-        get_schedule(web_page, week_list[i])
+        times_lst, locations_lst, lessons_lst = get_schedule(web_page, week_list[i])
 
         for time, location, lesson in zip(times_lst, locations_lst, lessons_lst):
             resp += '<b>{}</b>, {}, {}\n'.format(time, location, lesson)
