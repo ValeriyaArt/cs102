@@ -35,8 +35,7 @@ def get_schedule(web_page, day):
     soup = BeautifulSoup(web_page, "html5lib")
     # Получаем таблицу с расписанием на день недели
     schedule_table = soup.find("table", attrs={"id": "1day"})
-    if day == '/monday' or day == '/sunday' or
-                day == '/Monday' or day == '/Sunday':
+    if day == '/monday' or day == '/sunday' or day == '/Monday' or day == '/Sunday':
         schedule_table = soup.find("table", attrs={"id": "1day"})
     elif day == '/tuesday' or day == '/Tuesday':
         schedule_table = soup.find("table", attrs={"id": "2day"})
