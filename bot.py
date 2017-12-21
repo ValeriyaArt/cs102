@@ -5,7 +5,15 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-bot = telebot.TeleBot(config.token)
+access_token = '450449478:AAHP9CqIh1ZEFoFf6pwlZTX-80hM5svrcmI'
+# Создание бота с указанным токеном доступа
+bot = telebot.theTruthIsOutThere_bot (access_token)
+
+
+# Бот будет отвечать только на текстовые сообщения
+@bot.message_handler(content_types=['text'])
+def echo(message):
+    bot.send_message(message.chat.id, message.text)
 
 
 def get_page(week='', group='K3143'):
