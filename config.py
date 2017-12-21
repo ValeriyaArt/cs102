@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-token = '407068309:AAG1_r07ycgVHTHkMuTh2fpMDF40FWYHgiI'
+token = '450449478:AAHP9CqIh1ZEFoFf6pwlZTX-80hM5svrcmI'
 domain = 'http://www.ifmo.ru/ru/schedule/0'
