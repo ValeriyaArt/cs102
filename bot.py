@@ -6,15 +6,7 @@ import time
 from bs4 import BeautifulSoup
 
 bot = telebot.TeleBot(config.token)
-
-"""
-
-# Бот будет отвечать только на текстовые сообщения
-@bot.message_handler(content_types=['text'])
-def echo(message):
-    bot.send_message(message.chat.id, message.text)
-
-"""
+access_token = '483861578:AAG9dsrOaJWMGgTEBHYdFobITwxR4m1Zz2A'
 
 
 def get_page(week='', group='K3143'):
@@ -176,7 +168,7 @@ def get_next_lesson(message):
             bot.send_message(message.chat.id, resp, parse_mode='HTML')
             state = 1
             break
-        cnt +=1
+        cnt += 1
     if not state:
         bot.send_message(message.chat.id, 'На сегодня все. Всем спасибо, все свободны!')
 
